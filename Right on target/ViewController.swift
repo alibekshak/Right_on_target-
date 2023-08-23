@@ -10,17 +10,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        game = Game(startValue: 1, endValue: 50, rounds: 5)
+        // Создаем генератор случайных чисел
+        let generator = NumberGenerator(startValue: 1, endValue: 50)!
+        game = Game(valueGenerator: generator, rounds: 5)
         // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+        updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
     }
     
     
     // MARK: - Взаимодействие View - Model
     
     @IBAction func checkNumbar(){
-        game.calculateScore(with: Int(slider.value))
+        game.currentRound.calculateScore(with: Int(slider.value))
         
         // проверка об оконьчании игры
         if game.isGameEnded{
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
         }
         
         // Обновляем данные о текущем значении загаданного числа
-        updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+        updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
         
     }
     
