@@ -13,7 +13,8 @@ class ViewControllerFirstPage: UIViewController {
         // загрузка сториборда
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         // загрузка ViewController
-        let viewController = storyboard.instantiateViewController(identifier: "ViewController")
+        let viewController = storyboard.instantiateViewController(identifier: "ViewController") // в identifier указывается storyboar ID (который мы сами назначили)
+        
         // отображение сцены
         self.present(viewController, animated: true)
     }
